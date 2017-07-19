@@ -72,6 +72,15 @@ Add the following to your POM file:
         <customVmTemplate>src/test/resources/cucumber-custom-runner.vm</customVmTemplate>
         <!-- Specify a custom package name for generated sources. Default is no package.-->
         <packageName>com.example</packageName>
+        <!-- Filter generated class files based on modular arithmetic-->
+        <!-- This is useful if you are running tests in parallel across multiple maven executions-->
+        <!-- As one might do in a Continuous Integration suite-->
+        <offlineParallelExecutionFilter>
+            <!-- The current execution number should be set as the remainder -->
+            <remainder>0</remainder>
+            <!-- The total number of parallel executions should be set as the modulo-->
+            <modulo>1</modulo>
+        </offlineParallelExecutionFilter>
       </configuration>
     </execution>
   </executions>

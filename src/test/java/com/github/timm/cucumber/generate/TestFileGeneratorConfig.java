@@ -3,6 +3,8 @@ package com.github.timm.cucumber.generate;
 import org.apache.maven.plugin.logging.Log;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 class TestFileGeneratorConfig implements FileGeneratorConfig {
 
@@ -13,6 +15,7 @@ class TestFileGeneratorConfig implements FileGeneratorConfig {
     private final String namingScheme = "simple";
     private final String namingPattern = null;
     private final String customVmTemplate = "";
+    final Map<String, Integer> filterMap = new HashMap<>();
 
     TestFileGeneratorConfig setFeaturesDirectory(final File directory) {
         this.featuresDirectory = directory;
@@ -50,6 +53,11 @@ class TestFileGeneratorConfig implements FileGeneratorConfig {
 
     public File getProjectBasedir() {
         return new File(".");
+    }
+
+    @Override
+    public Map<String, Integer> getOfflineParallelExecutionFilter() {
+        return filterMap;
     }
 
 }

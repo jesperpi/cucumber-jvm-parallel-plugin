@@ -2,6 +2,7 @@ package com.github.timm.cucumber.generate;
 
 import static java.lang.String.format;
 
+import com.github.timm.cucumber.generate.filter.OfflineParallelExecutionFilter;
 import com.github.timm.cucumber.generate.filter.TagFilter;
 import com.github.timm.cucumber.generate.name.ClassNamingScheme;
 import gherkin.AstBuilder;
@@ -47,6 +48,7 @@ public class CucumberITGeneratorByFeature implements CucumberITGenerator {
     private Template velocityTemplate;
     private String outputFileName;
     private final ClassNamingScheme classNamingScheme;
+    private final OfflineParallelExecutionFilter offlineParallelExecutionFilter;
 
 
     /**
@@ -60,6 +62,9 @@ public class CucumberITGeneratorByFeature implements CucumberITGenerator {
         this.config = config;
         this.overriddenParameters = overriddenParameters;
         this.classNamingScheme = classNamingScheme;
+        offlineParallelExecutionFilter = new OfflineParallelExecutionFilter(
+            config.getOfflineParallelExecutionFilter()
+        );
         initTemplate();
     }
 
@@ -120,6 +125,14 @@ public class CucumberITGeneratorByFeature implements CucumberITGenerator {
     }
 
     private void writeFile(final File outputDirectory) throws MojoExecutionException {
+        if (this.offlineParallelExecutionFilter.isValid(fileCounter)) {
+            outputFile(outputDirectory);
+        }
+        fileCounter++;
+    }
+
+
+    private void outputFile(final File outputDirectory) throws MojoExecutionException {
         final File outputFile = new File(outputDirectory, outputFileName + ".java");
         FileWriter w = null;
         try {
@@ -137,8 +150,6 @@ public class CucumberITGeneratorByFeature implements CucumberITGenerator {
                 }
             }
         }
-
-        fileCounter++;
     }
 
     private boolean shouldSkipFeature(final Feature feature) {

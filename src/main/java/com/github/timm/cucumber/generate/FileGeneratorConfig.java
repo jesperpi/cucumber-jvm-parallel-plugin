@@ -3,6 +3,7 @@ package com.github.timm.cucumber.generate;
 import org.apache.maven.plugin.logging.Log;
 
 import java.io.File;
+import java.util.Map;
 
 interface FileGeneratorConfig {
 
@@ -19,4 +20,6 @@ interface FileGeneratorConfig {
     String getPackageName();
 
     File getProjectBasedir();
+
+    Map<String, Integer> getOfflineParallelExecutionFilter();
 }
