@@ -1,8 +1,8 @@
 package com.github.timm.cucumber.generate;
 
 import static com.github.timm.cucumber.generate.Plugin.createBuildInPlugin;
-import static com.github.timm.cucumber.generate.filter.OfflineParallelExecutionFilter.MODULO;
-import static com.github.timm.cucumber.generate.filter.OfflineParallelExecutionFilter.REMAINDER;
+import static com.github.timm.cucumber.generate.filter.GroupFilter.TOTAL;
+import static com.github.timm.cucumber.generate.filter.GroupFilter.CURRENT;
 import static java.util.Collections.singletonList;
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -14,20 +14,20 @@ import org.junit.Test;
 import java.io.File;
 import java.util.Collections;
 
-public class CucumberITGeneratorOfflineFilteringTest {
+public class OfflineGroupFilteringTest {
 
     private CucumberITGeneratorByScenario classUnderTest;
     private TestFileGeneratorConfig config;
     private File outputDirectory;
 
-    private void setup(int modulo, int remainder) throws Exception {
+    private void setup(int total, int current) throws Exception {
         config = new TestFileGeneratorConfig()
                         .setFeaturesDirectory(
                                         new File("src/it/junit/issue_43-outline_runner/src/test/resources/features/"))
                         .setCucumberOutputDir(this.getClass());
 
-        config.filterMap.put(MODULO, modulo);
-        config.filterMap.put(REMAINDER, remainder);
+        config.filterMap.put(TOTAL, total);
+        config.filterMap.put(CURRENT, current);
 
         final OverriddenCucumberOptionsParameters overriddenParameters =
                 new OverriddenCucumberOptionsParameters()

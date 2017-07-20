@@ -31,7 +31,6 @@ import org.apache.maven.project.MavenProject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -186,8 +185,8 @@ public class GenerateRunnersMojo extends AbstractMojo implements FileGeneratorCo
     @Parameter(property = "customVmTemplate", required = false)
     private String customVmTemplate;
 
-    @Parameter(property = "offlineParallelExecutionFilter", required = false)
-    private Map<String, Integer> offlineParallelExecutionFilter;
+    @Parameter(property = "groupFilter", required = false)
+    private Map<String, Integer> groupFilter;
 
     /**
      * Called by Maven to run this mojo after parameters have been injected.
@@ -340,8 +339,8 @@ public class GenerateRunnersMojo extends AbstractMojo implements FileGeneratorCo
         return project.getBasedir();
     }
 
-    public Map<String, Integer> getOfflineParallelExecutionFilter() {
-        return offlineParallelExecutionFilter;
+    public Map<String, Integer> getGroupFilter() {
+        return groupFilter;
     }
 
 }

@@ -46,10 +46,12 @@
                                 <package>foo</package>
                                 <package>bar</package>
                             </glue>
-                            <offlineParallelExecutionFilter>
-                                <remainder>1</remainder>
-                                <modulo>2</modulo>
-                            </offlineParallelExecutionFilter>
+                            <parallelScheme>SCENARIO</parallelScheme>
+                            <customVmTemplate>custom-template-test.vm</customVmTemplate>
+                            <groupFilter>
+                                <currentGroup>0</currentGroup>
+                                <totalGroups>2</totalGroups>
+                            </groupFilter>
                         </configuration>
                     </execution>
                 </executions>

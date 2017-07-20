@@ -21,5 +21,5 @@ interface FileGeneratorConfig {
 
     File getProjectBasedir();
 
-    Map<String, Integer> getOfflineParallelExecutionFilter();
+    Map<String, Integer> getGroupFilter();
 }

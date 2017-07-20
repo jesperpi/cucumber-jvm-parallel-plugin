@@ -56,7 +56,7 @@ class TestFileGeneratorConfig implements FileGeneratorConfig {
     }
 
     @Override
-    public Map<String, Integer> getOfflineParallelExecutionFilter() {
+    public Map<String, Integer> getGroupFilter() {
         return filterMap;
     }
 

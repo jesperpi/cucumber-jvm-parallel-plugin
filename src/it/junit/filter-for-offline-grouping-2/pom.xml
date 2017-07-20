@@ -46,10 +46,10 @@
                                 <package>foo</package>
                                 <package>bar</package>
                             </glue>
-                            <offlineParallelExecutionFilter>
-                                <remainder>0</remainder>
-                                <modulo>2</modulo>
-                            </offlineParallelExecutionFilter>
+                            <groupFilter>
+                                <currentGroup>0</currentGroup>
+                                <totalGroups>2</totalGroups>
+                            </groupFilter>
                         </configuration>
                     </execution>
                 </executions>
